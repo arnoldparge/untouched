@@ -25,6 +25,14 @@
             $(".player").draggable();
         });
 
+        $(document).click(function (event) {
+            $(".player").position({
+                my: "left-20 bottom+20",
+                of: event,
+                collision: "fit"
+            });
+        });
+
         //$(document).mousemove(function (event) {
         //    $(".player").position({
         //        my: "left-20 bottom+20",
