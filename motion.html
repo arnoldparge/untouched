@@ -139,6 +139,12 @@
 
     function start_game()
     {
+        var xelem = xmlDoc.getElementsByTagName('book');
+
+        high_score = xelem[0].getAttribute("category");
+
+        alert(high_score);
+
         falling(document.getElementById("enem1"), "2");
         falling(document.getElementById("enem2"), "5");
         falling(document.getElementById("enem3"), "7");
@@ -147,20 +153,13 @@
         setInterval(function () {
             collision();
         }, "1");
-
-
-        var xelem = xmlDoc.getElementsByTagName('book');
-
-        high_score = xelem[0].getAttribute("category");
-
-        alert(high_score);
     }
 
     $(document).ready(function () {
         start_game();
     });
 
-    var high_score = 0;
+    var high_score;
     var score = 0;
 
 </script>
