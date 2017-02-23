@@ -40,13 +40,10 @@
 
                 if (myx > 0 && myx < 10)
                     pl.style.left = (myx + 1) + 'px';
+                else if(myx > 310 && myx < 320)
+                    pl.style.left = (myx - 1) + 'px';
                 else
                     pl.style.left = (myx - (acceleration.x)) + 'px';
-
-                //if (myx > 310 && myx < 320)
-                //    pl.style.left = (myx - 1) + 'px';
-                //else
-                //    pl.style.left = (myx - (acceleration.x)) + 'px';
 
             }
 
