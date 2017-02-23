@@ -77,7 +77,7 @@
             var ran;
 
             if (y == 640) {
-                ran = Math.random() * 320;
+                ran = Math.random() * 300;
                 en.style.top = (0) + 'px';
             }
             else
@@ -88,11 +88,44 @@
         }, speed);
     }
 
+    function collision()
+    {
+        var enims = document.getElementsByClassName("enemy");
+        var i;
+
+        var pl = document.getElementById("player");
+        var px = pl.offsetLeft;
+        var py = pl.offsetTop;
+
+        var ex, ey;
+
+        for (i = 0; i < enims.length; i++)
+        {
+            ex = enims[i].offsetLeft;
+            ey = enims[i].offsetTop;
+
+            if ((px > (ex - 40) && px < (ex + 80)))
+            {
+                if ((py > (ey - 40) && py < (ey + 80)))
+                    window.open("game_over.html", "_self"); //collision happens here
+            }
+        }
+    }
+
+    function start_game()
+    {
+        falling(document.getElementById("enem1"), "2");
+        falling(document.getElementById("enem2"), "5");
+        falling(document.getElementById("enem3"), "7");
+        falling(document.getElementById("enem4"), "12");
+
+        setInterval(function () {
+            collision();
+        }, "1");
+    }
+
     $(document).ready(function () {
-        falling(document.getElementById("enem1"), "5");
-        falling(document.getElementById("enem2"), "10");
-        falling(document.getElementById("enem3"), "15");
-        falling(document.getElementById("enem4"), "20");
+        start_game();
     });
 
 </script>
@@ -109,8 +142,8 @@
     }
 
     .enemy {
-        width:60px;
-        height:60px;
+        width:80px;
+        height:80px;
         background-color:red;
         position:absolute;
     }
@@ -135,14 +168,18 @@
         left:280px;
     }
 
+    #info {
+        font-size:200px;
+    }
+
 </style>
 </head>
 <body>
     <div id="info"></div>
     <div id="player"></div>
-    <div id="enem1" class="enemy"></div>
-    <div id="enem2" class="enemy"></div>
-    <div id="enem3" class="enemy"></div>
-    <div id="enem4" class="enemy"></div>
+    <div id="enem1" class="enemy">1</div>
+    <div id="enem2" class="enemy">2</div>
+    <div id="enem3" class="enemy">3</div>
+    <div id="enem4" class="enemy">4</div>
 </body>
 </html>
