@@ -11,27 +11,15 @@
 
 <script type="text/javascript" charset="utf-8">
 
-    //var xhttp = new XMLHttpRequest();
-    //xhttp.onreadystatechange = function () {
-    //    if (this.readyState == 4 && this.status == 200) {
-    //        xml_start(this);
-    //    }
-    //};
-    //xhttp.open("GET", "scoring.xml", true);
-    //xhttp.send();
-
-    //var xmlDoc;
-
-    //function xml_start(xml) {
-    //    xmlDoc = xml.responseXML;
-    //}
-
     document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
-        setInterval(function () {
-            navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-        }, "10");
+        var options = { frequency: 40 };
+        navigator.accelerometer.getCurrentAcceleration(onSuccess, onError, options);
+
+        //setInterval(function () {
+        //    navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+        //}, "10");
     }
 
     function onSuccess(acceleration) {
@@ -40,16 +28,8 @@
         var w = window.screen.width;
         var h = window.screen.height;
 
-        var txt = "";
-
         var myx = pl.offsetLeft;
         var myy = pl.offsetTop;
-
-        txt += 'x=' + (myx - acceleration.x) + '<br> y=' + (myy + acceleration.y);
-
-        txt += '<br><br>myx=' + myx + '<br>myy=' + myy;
-
-        txt += '<br> <br>w=' + w + ' h=' + h;
 
         if (myx < 0) {
             pl.style.left = (0) + 'px';
@@ -159,7 +139,7 @@
         start_game();
     });
 
-    var high_score;
+    var high_score = 0;
     var score = 0;
 
 </script>
