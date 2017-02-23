@@ -34,26 +34,38 @@
 
             txt += '<br> <br>w=' + w + ' h=' + h;
 
-            document.getElementById("info").innerHTML = txt;
+            //document.getElementById("info").innerHTML = txt;
 
-            if (myx > 0 && myx < 320) { //set bounds for the player horizontally 
+            //if (myx > 0 && myx < 320) { //set bounds for the player horizontally 
 
-                if (myx > 0 && myx < 10)
-                    pl.style.left = (myx + 1) + 'px';
-                else if(myx > 310 && myx < 320)
-                    pl.style.left = (myx - 1) + 'px';
-                else
-                    pl.style.left = (myx - (acceleration.x)) + 'px';
+            //    if (myx > 0 && myx < 10)
+            //        pl.style.left = (myx + 1) + 'px';
+            //    else if(myx > 310 && myx < 320)
+            //        pl.style.left = (myx - 1) + 'px';
+            //    else
+            //        pl.style.left = (myx - (acceleration.x)) + 'px';
+            //}
+
+            //if (myy > 0 && myy < 600) { //set bounds for the player vertically 
+
+            //    if (myy > 0 && myy < 10)
+            //        pl.style.top = (myy + 1) + 'px';
+            //    else if (myy > 590 && myy < 600)
+            //        pl.style.top = (myy - 1) + 'px';
+            //    else
+            //        pl.style.top = (myy + (acceleration.y)) + 'px';
+            //}
+
+            if (myx < 0)
+            {
+                pl.style.left = (0) + 'px';
             }
-
-            if (myy > 0 && myy < 600) { //set bounds for the player vertically 
-
-                if (myy > 0 && myy < 10)
-                    pl.style.top = (myy + 1) + 'px';
-                else if (myy > 590 && myy < 600)
-                    pl.style.top = (myy - 1) + 'px';
-                else
-                    pl.style.top = (myy + (acceleration.y)) + 'px';
+            else if (myx > 320) {
+                pl.style.left = (320) + 'px';
+            }
+            else
+            {
+                pl.style.left = (myx - (acceleration.x)) + 'px';
             }
 
         }
