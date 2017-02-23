@@ -37,8 +37,12 @@
 
             document.getElementById("info").innerHTML = txt;
 
-            pl.style.left = (myx - acceleration.x) + 'px';
-            pl.style.top = (myy + acceleration.y) + 'px';
+            if (myx > 0 && myx < 680) {
+                pl.style.left = (myx - acceleration.x) + 'px';
+            }
+            if (myy > 0 && myy < 1240) {
+                pl.style.top = (myy + acceleration.y) + 'px';
+            }
         }
 
         // onError: Failed to get the acceleration
