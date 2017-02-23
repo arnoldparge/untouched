@@ -21,12 +21,23 @@
     // onSuccess: Get a snapshot of the current acceleration
     //
     function onSuccess(acceleration) {
+        var pl = document.getElementById("player");
+        //var a = 100;
+        //var b = 100;
 
-        var myx = document.getElementById("info").offsetLeft;
-        var myy = document.getElementById("info").offsetTop;
 
-        document.getElementById("info").offsetLeft -= acceleration.y;
-        document.getElementById("info").offsetTop += acceleration.x;
+
+        var myx = pl.offsetLeft;
+        var myy = pl.offsetTop;
+
+        document.getElementById("info").innerHTML = 'x=' + (myx + acceleration.x * 10) + ' y=' + (myy - acceleration.y * 10);
+
+        //document.getElementById("info").innerHTML = 'x=' + (acceleration.x) + '<br> y=' + (acceleration.y);
+
+        pl.style.left = (myx - acceleration.x * 10)+'px';
+        pl.style.top = (myy + acceleration.y * 10)+'px';
+
+
 
         //document.getElementById("info").innerHTML = 'Acceleration X: ' + acceleration.x + '\n' +
         //      'Acceleration Y: ' + acceleration.y + '\n' +
@@ -56,5 +67,8 @@
   </head>
   <body>
     <div id="player"></div>
+      <div id="info">
+
+      </div>
   </body>
 </html>
