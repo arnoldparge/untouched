@@ -32,7 +32,9 @@
             var myy = pl.offsetTop;
 
             txt += 'x=' + (myx - acceleration.x) + '<br> y=' + (myy + acceleration.y);
-
+          
+            txt += '<br><br>myx='+myx+'<br>myy='+myy;
+          
             txt += '<br> <br>w=' + w + ' h=' + h;
 
             document.getElementById("info").innerHTML = txt;
