@@ -5,11 +5,9 @@
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
-
         // Wait for device API libraries to load
         //
         document.addEventListener("deviceready", onDeviceReady, false);
-
         // device APIs are available
         //
         function onDeviceReady() {
@@ -17,45 +15,47 @@
                 navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
             }, "10");
         }
-
         // onSuccess: Get a snapshot of the current acceleration
         //
         function onSuccess(acceleration) {
             var pl = document.getElementById("player");
-
             var w = window.screen.width;
             var h = window.screen.height;
-
             var txt = "";
-
             var myx = pl.offsetLeft;
             var myy = pl.offsetTop;
-
             txt += 'x=' + (myx - acceleration.x) + '<br> y=' + (myy + acceleration.y);
-          
-            txt += '<br><br>myx='+myx+'<br>myy='+myy;
-          
-            txt += '<br> <br>w=' + w + ' h=' + h;
 
+            txt += '<br><br>myx=' + myx + '<br>myy=' + myy;
+
+            txt += '<br> <br>w=' + w + ' h=' + h;
             document.getElementById("info").innerHTML = txt;
 
             if (myx > 0 && myx < 320) {
-              if(myx == 1)
-                pl.style.left = 2+'px';
-              else
-                pl.style.left = (myx - (acceleration.x)) + 'px';
+                if (acceleration.x < 0) {
+                    pl.style.left = myx + 1;
+                }
+                if (acceleration.x > 0) {
+                    pl.style.left = myx - 1;
+                }
             }
-            if (myy > 0 && myy < 600) {
-                pl.style.top = (myy + (acceleration.y)) + 'px';
-            }
-        }
 
+            //if (myx > 0 && myx < 320) {
+            //    if (myx == 1)
+            //        pl.style.left = 2 + 'px';
+            //    else
+            //        pl.style.left = (myx - (acceleration.x)) + 'px';
+            //}
+            //if (myy > 0 && myy < 600) {
+            //    pl.style.top = (myy + (acceleration.y)) + 'px';
+            //}
+
+        }
         // onError: Failed to get the acceleration
         //
         function onError() {
             alert('onError!');
         }
-
     </script>
     
     <style>
