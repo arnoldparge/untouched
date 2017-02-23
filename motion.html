@@ -13,7 +13,7 @@
         function onDeviceReady() {
             setInterval(function () {
                 navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-            }, "10");
+            }, "220");
         }
         // onSuccess: Get a snapshot of the current acceleration
         //
@@ -33,10 +33,10 @@
 
             if (myx > 0 && myx < 320) {
                 if (acceleration.x < 0) {
-                    pl.style.left = myx + 1;
+                    pl.style.left = (myx + 1) + 'px';
                 }
                 if (acceleration.x > 0) {
-                    pl.style.left = myx - 1;
+                    pl.style.left = (myx - 1) + 'px';
                 }
             }
 
