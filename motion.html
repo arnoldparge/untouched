@@ -31,17 +31,17 @@
             var myx = pl.offsetLeft;
             var myy = pl.offsetTop;
 
-            txt += 'x=' + (myx + acceleration.x) + '<br> y=' + (myy - acceleration.y);
+            txt += 'x=' + (myx - acceleration.x) + '<br> y=' + (myy + acceleration.y);
 
             txt += '<br> <br>w=' + w + ' h=' + h;
 
             document.getElementById("info").innerHTML = txt;
 
             if (myx > 0 && myx < 320) {
-                pl.style.left = (myx - acceleration.x/2) + 'px';
+                pl.style.left = (myx - (acceleration.x/2)) + 'px';
             }
             if (myy > 0 && myy < 600) {
-                pl.style.top = (myy + acceleration.y/2) + 'px';
+                pl.style.top = (myy + (acceleration.y/2)) + 'px';
             }
         }
 
