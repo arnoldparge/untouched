@@ -11,18 +11,29 @@
 
 <script type="text/javascript" charset="utf-8">
 
-    // Wait for device API libraries to load
-    //
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            xml_start(this);
+        }
+    };
+    xhttp.open("GET", "scoring.xml", true);
+    xhttp.send();
+
+    var xmlDoc;
+
+    function xml_start(xml) {
+        xmlDoc = xml.responseXML;
+    }
+
     document.addEventListener("deviceready", onDeviceReady, false);
-    // device APIs are available
-    //
+
     function onDeviceReady() {
         setInterval(function () {
             navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
         }, "10");
     }
-    // onSuccess: Get a snapshot of the current acceleration
-    //
+
     function onSuccess(acceleration) {
         var pl = document.getElementById("player");
 
@@ -97,6 +108,8 @@
 
         var ex, ey;
 
+        scoring();
+
         for (i = 0; i < enims.length; i++)
         {
             ex = enims[i].offsetLeft;
@@ -104,8 +117,11 @@
 
             if ((px > (ex - 40) && px < (ex + 80)))
             {
-                if ((py > (ey - 40) && py < (ey + 80)))
+                if ((py > (ey - 40) && py < (ey + 80))) {
+                    var xelem = xmlDoc.getElementsByTagName('score');
+                    xelem[0].setAttribute("hs", high_score);
                     window.open("game_over.html", "_self"); //collision happens here
+                }
             }
         }
     }
@@ -117,9 +133,7 @@
         if (high_score < score)
             high_score = score;
 
-        localStorage.setItem("hs", high_score);
-
-        document.getElementById("hs").innerHTML = "High Score:" + localStorage.getItem("hs");
+        document.getElementById("hs").innerHTML = "High Score:" + high_score;
         document.getElementById("scr").innerHTML = "Score" + score;
     }
 
@@ -133,6 +147,11 @@
         setInterval(function () {
             collision();
         }, "1");
+
+
+        var xelem = xmlDoc.getElementsByTagName('book');
+
+        high_score = xelem[0].getAttribute("category");
     }
 
     $(document).ready(function () {
