@@ -15,7 +15,7 @@
     function onDeviceReady() {
 	setInterval(function(){
         navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-	},"100");
+	},"1");
     }
 
     // onSuccess: Get a snapshot of the current acceleration
@@ -30,7 +30,7 @@
         var myx = pl.offsetLeft;
         var myy = pl.offsetTop;
 
-        document.getElementById("info").innerHTML = 'x=' + (myx + acceleration.x * 10) + ' y=' + (myy - acceleration.y * 10);
+        document.getElementById("info").innerHTML = 'x=' + (myx + acceleration.x) + ' y=' + (myy - acceleration.y);
 
         //document.getElementById("info").innerHTML = 'x=' + (acceleration.x) + '<br> y=' + (acceleration.y);
 
