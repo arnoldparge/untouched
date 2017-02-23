@@ -40,8 +40,6 @@
 
         txt += '<br> <br>w=' + w + ' h=' + h;
 
-        //document.getElementById("info").innerHTML = txt;
-
         if (myx < 0) {
             pl.style.left = (0) + 'px';
         }
@@ -112,6 +110,19 @@
         }
     }
 
+    function scoring()
+    {
+        score++;
+
+        if (high_score < score)
+            high_score = score;
+
+        localStorage.setItem("hs", high_score);
+
+        document.getElementById("hs").innerHTML = "High Score:" + localStorage.getItem("hs");
+        document.getElementById("scr").innerHTML = "Score" + score;
+    }
+
     function start_game()
     {
         falling(document.getElementById("enem1"), "2");
@@ -127,6 +138,9 @@
     $(document).ready(function () {
         start_game();
     });
+
+    var high_score = 0;
+    var score = 0;
 
 </script>
     
@@ -168,14 +182,12 @@
         left:280px;
     }
 
-    #info {
-        font-size:200px;
-    }
-
 </style>
 </head>
 <body>
-    <div id="info"></div>
+    <div id="hs">High Score: </div>
+    <br />
+    <div id="scr">Score: </div>
     <div id="player"></div>
     <div id="enem1" class="enemy">1</div>
     <div id="enem2" class="enemy">2</div>
