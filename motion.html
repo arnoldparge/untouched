@@ -37,12 +37,10 @@
 
             document.getElementById("info").innerHTML = txt;
 
-            if (myx > 0 && myx < 320) {
-                if (myx == 1)
-                    myx = 2;
+            if (myx > 5 && myx < 320) {
                 pl.style.left = (myx - acceleration.x) + 'px';
             }
-            if (myy > 0 && myy < 600) {
+            if (myy > 5 && myy < 600) {
                 pl.style.top = (myy + acceleration.y) + 'px';
             }
         }
