@@ -14,12 +14,10 @@
     document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
-        var options = { frequency: 40 };
-        navigator.accelerometer.getCurrentAcceleration(onSuccess, onError, options);
-
-        //setInterval(function () {
-        //    navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-        //}, "10");
+        setInterval(function () {
+            navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+        }, "10");
+        start_game();
     }
 
     function onSuccess(acceleration) {
@@ -113,18 +111,12 @@
         if (high_score < score)
             high_score = score;
 
-        document.getElementById("hs").innerHTML = "High Score:" + high_score;
-        document.getElementById("scr").innerHTML = "Score" + score;
+        document.getElementById("hs").innerHTML = "High Score: " + high_score;
+        document.getElementById("scr").innerHTML = "Score: " + score;
     }
 
     function start_game()
     {
-        //var xelem = xmlDoc.getElementsByTagName('book');
-
-        //high_score = xelem[0].getAttribute("category");
-
-        //alert(high_score);
-
         falling(document.getElementById("enem1"), "2");
         falling(document.getElementById("enem2"), "5");
         falling(document.getElementById("enem3"), "7");
@@ -135,9 +127,9 @@
         }, "1");
     }
 
-    $(document).ready(function () {
-        start_game();
-    });
+    //$(document).ready(function () {
+    //    start_game();
+    //});
 
     var high_score = 0;
     var score = 0;
