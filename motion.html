@@ -11,20 +11,20 @@
 
 <script type="text/javascript" charset="utf-8">
 
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            xml_start(this);
-        }
-    };
-    xhttp.open("GET", "scoring.xml", true);
-    xhttp.send();
+    //var xhttp = new XMLHttpRequest();
+    //xhttp.onreadystatechange = function () {
+    //    if (this.readyState == 4 && this.status == 200) {
+    //        xml_start(this);
+    //    }
+    //};
+    //xhttp.open("GET", "scoring.xml", true);
+    //xhttp.send();
 
-    var xmlDoc;
+    //var xmlDoc;
 
-    function xml_start(xml) {
-        xmlDoc = xml.responseXML;
-    }
+    //function xml_start(xml) {
+    //    xmlDoc = xml.responseXML;
+    //}
 
     document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -118,8 +118,8 @@
             if ((px > (ex - 40) && px < (ex + 80)))
             {
                 if ((py > (ey - 40) && py < (ey + 80))) {
-                    var xelem = xmlDoc.getElementsByTagName('score');
-                    xelem[0].setAttribute("hs", high_score);
+                    //var xelem = xmlDoc.getElementsByTagName('score');
+                    //xelem[0].setAttribute("hs", high_score);
                     window.open("game_over.html", "_self"); //collision happens here
                 }
             }
@@ -139,11 +139,11 @@
 
     function start_game()
     {
-        var xelem = xmlDoc.getElementsByTagName('book');
+        //var xelem = xmlDoc.getElementsByTagName('book');
 
-        high_score = xelem[0].getAttribute("category");
+        //high_score = xelem[0].getAttribute("category");
 
-        alert(high_score);
+        //alert(high_score);
 
         falling(document.getElementById("enem1"), "2");
         falling(document.getElementById("enem2"), "5");
