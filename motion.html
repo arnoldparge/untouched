@@ -38,6 +38,9 @@
             document.getElementById("info").innerHTML = txt;
 
             if (myx > 0 && myx < 320) {
+              if(myx == 1)
+                pl.style.left = 2;
+              else
                 pl.style.left = (myx - (acceleration.x/2)) + 'px';
             }
             if (myy > 0 && myy < 600) {
