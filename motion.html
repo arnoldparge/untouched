@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Acceleration Example</title>
+    <title>Game</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
@@ -19,36 +19,32 @@
         //
         function onSuccess(acceleration) {
             var pl = document.getElementById("player");
+
             var w = window.screen.width;
             var h = window.screen.height;
+
             var txt = "";
+
             var myx = pl.offsetLeft;
             var myy = pl.offsetTop;
+
             txt += 'x=' + (myx - acceleration.x) + '<br> y=' + (myy + acceleration.y);
 
             txt += '<br><br>myx=' + myx + '<br>myy=' + myy;
 
             txt += '<br> <br>w=' + w + ' h=' + h;
+
             document.getElementById("info").innerHTML = txt;
 
             if (myx > 0 && myx < 320) {
-                if (acceleration.x < 0) {
-                    pl.style.left = (myx + 1) + 'px';
-                }
-                if (acceleration.x > 0) {
-                    pl.style.left = (myx - 1) + 'px';
-                }
+                if (myx == 1)
+                    pl.style.left = 2 + 'px';
+                else
+                    pl.style.left = (myx - (acceleration.x)) + 'px';
             }
-
-            //if (myx > 0 && myx < 320) {
-            //    if (myx == 1)
-            //        pl.style.left = 2 + 'px';
-            //    else
-            //        pl.style.left = (myx - (acceleration.x)) + 'px';
-            //}
-            //if (myy > 0 && myy < 600) {
-            //    pl.style.top = (myy + (acceleration.y)) + 'px';
-            //}
+            if (myy > 0 && myy < 600) {
+                pl.style.top = (myy + (acceleration.y)) + 'px';
+            }
 
         }
         // onError: Failed to get the acceleration
