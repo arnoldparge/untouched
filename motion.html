@@ -37,7 +37,7 @@
             document.getElementById("info").innerHTML = txt;
 
             if (myx > 0 && myx < 320) {
-                if (myx == 1)
+                if (myx > 0 && myx < 10)
                     pl.style.left = (myx + 1) + 'px';
                 else
                     pl.style.left = (myx - (acceleration.x)) + 'px';
