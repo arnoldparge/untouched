@@ -34,7 +34,7 @@
 
             txt += '<br> <br>w=' + w + ' h=' + h;
 
-            //document.getElementById("info").innerHTML = txt;
+            document.getElementById("info").innerHTML = txt;
 
             //if (myx > 0 && myx < 320) { //set bounds for the player horizontally 
 
@@ -56,16 +56,24 @@
             //        pl.style.top = (myy + (acceleration.y)) + 'px';
             //}
 
-            if (myx < 0)
-            {
+            if (myx < 0) {
                 pl.style.left = (0) + 'px';
             }
             else if (myx > 320) {
                 pl.style.left = (320) + 'px';
             }
-            else
-            {
+            else {
                 pl.style.left = (myx - (acceleration.x)) + 'px';
+            }
+
+            if (myy < 0) {
+                pl.style.top = (0) + 'px';
+            }
+            else if (myy > 600) {
+                pl.style.top = (600) + 'px';
+            }
+            else {
+                pl.style.top = (myy + (acceleration.y)) + 'px';
             }
 
         }
