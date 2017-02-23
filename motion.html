@@ -1,86 +1,148 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Game</title>
+<head>
+<title>Game</title>
 
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
-        // Wait for device API libraries to load
-        //
-        document.addEventListener("deviceready", onDeviceReady, false);
-        // device APIs are available
-        //
-        function onDeviceReady() {
-            navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-            //setInterval(function () {
-            //    navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-            //}, "10");
-        }
-        // onSuccess: Get a snapshot of the current acceleration
-        //
-        function onSuccess(acceleration) {
-            var pl = document.getElementById("player");
-
-            var w = window.screen.width;
-            var h = window.screen.height;
-
-            var txt = "";
-
-            var myx = pl.offsetLeft;
-            var myy = pl.offsetTop;
-
-            txt += 'x=' + (myx - acceleration.x) + '<br> y=' + (myy + acceleration.y);
-
-            txt += '<br><br>myx=' + myx + '<br>myy=' + myy;
-
-            txt += '<br> <br>w=' + w + ' h=' + h;
-
-            //document.getElementById("info").innerHTML = txt;
-
-            if (myx < 0) {
-                pl.style.left = (0) + 'px';
-            }
-            else if (myx > 320) {
-                pl.style.left = (320) + 'px';
-            }
-            else {
-                pl.style.left = (myx - (acceleration.x)) + 'px';
-            }
-
-            if (myy < 0) {
-                pl.style.top = (0) + 'px';
-            }
-            else if (myy > 600) {
-                pl.style.top = (600) + 'px';
-            }
-            else {
-                pl.style.top = (myy + (acceleration.y)) + 'px';
-            }
-
-        }
-        // onError: Failed to get the acceleration
-        //
-        function onError() {
-            alert('onError!');
-        }
-    </script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     
-    <style>
-        #player {
-            width:40px;
-            height:40px;
-            background-color:#555;
-            border-radius:40px;
-            position: absolute;
-            top:200px;
-            left:50px;
-        }
-    </style>
-  </head>
-  <body>
-    <div id="player"></div>
-      <div id="info">
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<link href="css/bootstrap.css" rel="stylesheet" />
 
-      </div>
-  </body>
+<script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        setInterval(function () {
+            navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+        }, "10");
+    }
+    // onSuccess: Get a snapshot of the current acceleration
+    //
+    function onSuccess(acceleration) {
+        var pl = document.getElementById("player");
+
+        var w = window.screen.width;
+        var h = window.screen.height;
+
+        var txt = "";
+
+        var myx = pl.offsetLeft;
+        var myy = pl.offsetTop;
+
+        txt += 'x=' + (myx - acceleration.x) + '<br> y=' + (myy + acceleration.y);
+
+        txt += '<br><br>myx=' + myx + '<br>myy=' + myy;
+
+        txt += '<br> <br>w=' + w + ' h=' + h;
+
+        //document.getElementById("info").innerHTML = txt;
+
+        if (myx < 0) {
+            pl.style.left = (0) + 'px';
+        }
+        else if (myx > 320) {
+            pl.style.left = (320) + 'px';
+        }
+        else {
+            pl.style.left = (myx - (acceleration.x)) + 'px';
+        }
+
+        if (myy < 0) {
+            pl.style.top = (0) + 'px';
+        }
+        else if (myy > 600) {
+            pl.style.top = (600) + 'px';
+        }
+        else {
+            pl.style.top = (myy + (acceleration.y)) + 'px';
+        }
+
+    }
+    // onError: Failed to get the acceleration
+    //
+    function onError() {
+        alert('onError!');
+    }
+
+    function falling(ele, speed)
+    {
+        setInterval(function () {
+            var en = ele;
+            var y = en.offsetTop;
+            var ran;
+
+            if (y == 640) {
+                ran = Math.random() * 320;
+                en.style.top = (0) + 'px';
+            }
+            else
+                en.style.top = (y + 1) + 'px';
+
+            en.style.left = (ran) + 'px';
+
+        }, speed);
+    }
+
+    $(document).ready(function () {
+        falling(document.getElementById("enem1"), "5");
+        falling(document.getElementById("enem2"), "10");
+        falling(document.getElementById("enem3"), "15");
+        falling(document.getElementById("enem4"), "20");
+    });
+
+</script>
+    
+<style>
+    #player {
+        width:40px;
+        height:40px;
+        background-color:#555;
+        border-radius:40px;
+        position: absolute;
+        top:550px;
+        left:150px;
+    }
+
+    .enemy {
+        width:60px;
+        height:60px;
+        background-color:red;
+        position:absolute;
+    }
+
+    #enem1 {
+        top:0px;
+        left:0px;
+    }
+
+    #enem2 {
+        top:0px;
+        left:80px;
+    }
+
+    #enem3 {
+        top:0px;
+        left:200px;
+    }
+
+    #enem4 {
+        top:0px;
+        left:280px;
+    }
+
+</style>
+</head>
+<body>
+    <div id="info"></div>
+    <div id="player"></div>
+    <div id="enem1" class="enemy"></div>
+    <div id="enem2" class="enemy"></div>
+    <div id="enem3" class="enemy"></div>
+    <div id="enem4" class="enemy"></div>
+</body>
 </html>
