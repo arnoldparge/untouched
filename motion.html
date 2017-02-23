@@ -49,14 +49,11 @@
 
             if (myy > 0 && myy < 600) { //set bounds for the player vertically 
 
-                //if (myy > 0 && myy < 10)
-                //    pl.style.top = (myy + 1) + 'px';
-                //else
-                //    pl.style.top = (myy + (acceleration.y)) + 'px';
-
-                //if (myy > 590 && myy < 600)
-                //    pl.style.top = (myy - 1) + 'px';
-                //else
+                if (myy > 0 && myy < 10)
+                    pl.style.top = (myy + 1) + 'px';
+                else if (myy > 590 && myy < 600)
+                    pl.style.top = (myy - 1) + 'px';
+                else
                     pl.style.top = (myy + (acceleration.y)) + 'px';
             }
 
