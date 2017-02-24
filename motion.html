@@ -107,7 +107,7 @@
         if (!localStorage.hs)
             localStorage.hs = "0";
 
-        document.getElementById("hs").innerHTML = "High Score: " + localStorage.hs;
+        document.getElementById("hs").innerHTML = "High Score: " + localStorage.getItem("hs");
 
     }
 
