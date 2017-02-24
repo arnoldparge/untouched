@@ -35,17 +35,14 @@
         else if (myx > 320) {
             pl.style.left = (320) + 'px';
         }
-        else {
-            pl.style.left = (myx - (acceleration.x)) + 'px';
-        }
-
-        if (myy < 0) {
+        else if (myy < 0) {
             pl.style.top = (0) + 'px';
         }
         else if (myy > 600) {
             pl.style.top = (600) + 'px';
         }
         else {
+            pl.style.left = (myx - (acceleration.x)) + 'px';
             pl.style.top = (myy + (acceleration.y)) + 'px';
         }
 
@@ -56,8 +53,7 @@
         alert('onError!');
     }
 
-    function falling(ele, speed)
-    {
+    function falling(ele, speed) {
         setInterval(function () {
             var en = ele;
             var y = en.offsetTop;
@@ -75,8 +71,7 @@
         }, speed);
     }
 
-    function collision()
-    {
+    function collision() {
         var enims = document.getElementsByClassName("enemy");
         var i;
 
@@ -88,13 +83,11 @@
 
         scoring();
 
-        for (i = 0; i < enims.length; i++)
-        {
+        for (i = 0; i < enims.length; i++) {
             ex = enims[i].offsetLeft;
             ey = enims[i].offsetTop;
 
-            if ((px > (ex - 40) && px < (ex + 80)))
-            {
+            if ((px > (ex - 40) && px < (ex + 80))) {
                 if ((py > (ey - 40) && py < (ey + 80))) {
                     window.plugins.insomnia.allowSleepAgain();
                     window.open("game_over.html", "_self"); //collision happens here
@@ -103,8 +96,7 @@
         }
     }
 
-    function scoring()
-    {
+    function scoring() {
         score++;
 
         if (high_score < score)
@@ -114,8 +106,7 @@
         document.getElementById("scr").innerHTML = "Score: " + score;
     }
 
-    function start_game()
-    {
+    function start_game() {
         falling(document.getElementById("enem1"), "2");
         falling(document.getElementById("enem2"), "5");
         falling(document.getElementById("enem3"), "7");
