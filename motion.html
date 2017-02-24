@@ -11,29 +11,23 @@
 <script type="text/javascript" src="js/Insomnia.js"></script>
 
 <script type="text/javascript" charset="utf-8">
-
     document.addEventListener("deviceready", onDeviceReady, false);
     var watchid;
-
     function onDeviceReady() {
         watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 10 });
         start_game();
-        
+
         document.addEventListener("backbutton", function (e) {
             e.preventDefault();
-            window.open("index.html","_self");
+            window.open("index.html", "_self");
         }, false);
     }
-
     function onSuccess(acceleration) {
         var pl = document.getElementById("player");
-
         var w = window.screen.width;
         var h = window.screen.height;
-
         var myx = pl.offsetLeft;
         var myy = pl.offsetTop;
-
         if (myx < 0) {
             pl.style.left = (0) + 'px';
         }
@@ -50,48 +44,37 @@
             pl.style.left = (myx - (acceleration.x)) + 'px';
             pl.style.top = (myy + (acceleration.y)) + 'px';
         }
-
     }
     // onError: Failed to get the acceleration
     //
     function onError() {
         alert('onError!');
     }
-
     function falling(ele, speed) {
         setInterval(function () {
             var en = ele;
             var y = en.offsetTop;
             var ran;
-
             if (y == 640) {
                 ran = Math.random() * 300;
                 en.style.top = (0) + 'px';
             }
             else
                 en.style.top = (y + 1) + 'px';
-
             en.style.left = (ran) + 'px';
-
         }, speed);
     }
-
     function collision() {
         var enims = document.getElementsByClassName("enemy");
         var i;
-
         var pl = document.getElementById("player");
         var px = pl.offsetLeft;
         var py = pl.offsetTop;
-
         var ex, ey;
-
         scoring();
-
         for (i = 0; i < enims.length; i++) {
             ex = enims[i].offsetLeft;
             ey = enims[i].offsetTop;
-
             if ((px > (ex - 40) && px < (ex + 80))) {
                 if ((py > (ey - 40) && py < (ey + 80))) {
                     window.plugins.insomnia.allowSleepAgain();
@@ -100,37 +83,28 @@
             }
         }
     }
-
     function scoring() {
         score++;
-
         if (high_score < score)
             high_score = score;
-
         document.getElementById("hs").innerHTML = "High Score: " + high_score;
         document.getElementById("scr").innerHTML = "Score: " + score;
     }
-
     function start_game() {
         falling(document.getElementById("enem1"), "2");
         falling(document.getElementById("enem2"), "5");
         falling(document.getElementById("enem3"), "7");
         falling(document.getElementById("enem4"), "12");
-
         setInterval(function () {
             collision();
         }, "1");
-
         //window.plugins.insomnia.keepAwake();
     }
-
     //$(document).ready(function () {
     //    start_game();
     //});
-
     var high_score = 0;
     var score = 0;
-
 </script>
     
 <style>
@@ -143,44 +117,44 @@
         top:550px;
         left:150px;
     }
-
     .enemy {
         width:80px;
         height:80px;
         background-color:red;
         position:absolute;
     }
-
     #enem1 {
-        top:0px;
+        top:100px;
         left:0px;
     }
-
     #enem2 {
-        top:0px;
+        top:100px;
         left:80px;
     }
-
     #enem3 {
-        top:0px;
+        top:100px;
         left:200px;
     }
-
     #enem4 {
-        top:0px;
+        top:100px;
         left:280px;
+    }
+
+    .scor {
+        background-color:black;
+        color:lightgray;
+
     }
 
 </style>
 </head>
 <body>
-    <div id="hs">High Score: </div>
-    <br />
-    <div id="scr">Score: </div>
+    <div id="hs" class="scor">High Score: </div>
+    <div id="scr" class="scor">Score: </div>
     <div id="player"></div>
-    <div id="enem1" class="enemy">1</div>
-    <div id="enem2" class="enemy">2</div>
-    <div id="enem3" class="enemy">3</div>
-    <div id="enem4" class="enemy">4</div>
+    <div id="enem1" class="enemy"></div>
+    <div id="enem2" class="enemy"></div>
+    <div id="enem3" class="enemy"></div>
+    <div id="enem4" class="enemy"></div>
 </body>
 </html>
