@@ -78,8 +78,8 @@
             if ((px > (ex - 40) && px < (ex + 80))) {
                 if ((py > (ey - 40) && py < (ey + 80))) {
                     window.plugins.insomnia.allowSleepAgain();
-                    alert('GAME OVER<br><br>Score: ' + score);
-                    window.open("game_over.html", "_self"); //collision happens here
+                    if(alert('GAME OVER<br><br>Score: ' + score))
+                        window.open("game_over.html", "_self"); //collision happens here
                 }
             }
         }
