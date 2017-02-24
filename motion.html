@@ -16,7 +16,7 @@
     var watchid;
 
     function onDeviceReady() {
-        watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 10 });
+        watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 1 });
         start_game();
     }
 
