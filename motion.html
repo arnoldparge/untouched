@@ -83,11 +83,6 @@
                 if ((py > (ey - 40) && py < (ey + 80))) {
                     //window.plugins.insomnia.allowSleepAgain();
                     navigator.notification.vibrate(500);
-                    navigator.notification.alert(
-                        'You were touched!',  // message
-                        'Game Over',            // title
-                        'Done'                  // buttonName
-                    );
                     localStorage.score = score;
                     window.open("game_over.html", "_self"); //collision happens here
                 }
