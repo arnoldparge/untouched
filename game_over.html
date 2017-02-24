@@ -20,8 +20,10 @@
 
             var sc = document.getElementById("score");
 
-            if (parseInt(localStorage.hs) < parseInt(sc.value))
-                localStorage.hs = sc.value;
+
+
+            if (parseInt(localStorage.hs) < parseInt(localStorage.score))
+                localStorage.hs = localStorage.score;
             
             sc.innerHTML = "Total Score: " + localStorage.score;
             document.getElementById("highscore").innerHTML = 'High Score: ' + localStorage.hs;
