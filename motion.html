@@ -82,6 +82,7 @@
             if ((px > (ex - 40) && px < (ex + 80))) {
                 if ((py > (ey - 40) && py < (ey + 80))) {
                     //window.plugins.insomnia.allowSleepAgain();
+                    navigator.notification.vibrate(1000);
                     localStorage.score = score;
                     window.open("game_over.html", "_self"); //collision happens here
                 }
@@ -126,6 +127,7 @@
 
         if ((px > (gx - 40) && px < (gx + 20))) {
             if ((py > (gy - 40) && py < (gy + 20))) {
+                navigator.notification.vibrate(500);
                 gd.style.left = (Math.random() * 340) + 'px';
                 gd.style.top = ((Math.random() * 520) + 100) + 'px';
             }
