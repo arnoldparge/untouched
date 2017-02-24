@@ -22,9 +22,9 @@
 
             if (localStorage.hs < sc)
                 localStorage.hs = sc;
-
-            sc.innerHTML = 'Total Score: ' + localStorage.score;
-            document.getElementById("score").innerHTML = 'High Score: ' + localStorage.hs;
+            
+            sc.innerHTML = "Total Score: " + localStorage.getItem("score");
+            document.getElementById("highscore").innerHTML = 'High Score: ' + localStorage.getItem("hs");
         }
 
     </script>
