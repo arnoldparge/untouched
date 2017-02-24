@@ -15,8 +15,12 @@
         function onDeviceReady() {
             document.addEventListener("backbutton", function (e) {
                 e.preventDefault();
-                window.open("index.html","_self");
+                window.open("index.html", "_self");
             }, false);
+
+            var sc = document.getElementById("score");
+
+            sc.innerHTML = 'Total Score: ' + localStorage.score;
         }
 
     </script>
@@ -43,6 +47,9 @@
     <div id="ttl">
         Game Over
     </div>
+    <br /><br />
+    <br /><br />
+    <div id="score"></div>
     <br /><br />
     <br /><br />
     <a href="motion.html" class="btn btn-success">Try Again</a>
