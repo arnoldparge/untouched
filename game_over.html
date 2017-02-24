@@ -20,11 +20,11 @@
 
             var sc = document.getElementById("score");
 
-            if (localStorage.hs < sc)
-                localStorage.hs = sc;
+            if (localStorage.hs < sc.value)
+                localStorage.hs = sc.value;
             
-            sc.innerHTML = "Total Score: " + localStorage.getItem("score");
-            document.getElementById("highscore").innerHTML = 'High Score: ' + localStorage.getItem("hs");
+            sc.innerHTML = "Total Score: " + localStorage.score;
+            document.getElementById("highscore").innerHTML = 'High Score: ' + localStorage.hs;
         }
 
     </script>
