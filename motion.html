@@ -13,11 +13,10 @@
 <script type="text/javascript" charset="utf-8">
 
     document.addEventListener("deviceready", onDeviceReady, false);
+    var watchid;
 
     function onDeviceReady() {
-        setInterval(function () {
-            navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-        }, "10");
+        watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 100 });
         start_game();
     }
 
@@ -126,7 +125,7 @@
             collision();
         }, "1");
 
-        window.plugins.insomnia.keepAwake();
+        //window.plugins.insomnia.keepAwake();
     }
 
     //$(document).ready(function () {
