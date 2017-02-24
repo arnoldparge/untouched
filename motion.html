@@ -78,6 +78,7 @@
             if ((px > (ex - 40) && px < (ex + 80))) {
                 if ((py > (ey - 40) && py < (ey + 80))) {
                     window.plugins.insomnia.allowSleepAgain();
+                    alert('GAME OVER<br><br>Score: ' + score);
                     window.open("game_over.html", "_self"); //collision happens here
                 }
             }
@@ -116,12 +117,16 @@
         position: absolute;
         top:550px;
         left:150px;
+        box-shadow:grey 2px 2px 10px;
     }
+
     .enemy {
         width:80px;
         height:80px;
         background-color:red;
         position:absolute;
+        border-radius:10px;
+        box-shadow:grey 5px 5px 10px;
     }
     #enem1 {
         top:100px;
