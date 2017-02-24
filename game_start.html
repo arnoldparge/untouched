@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Game</title>
+
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<link href="css/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript" src="js/Insomnia.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    var watchid;
+
+    function onDeviceReady() {
+        watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 100 });
+    }
+
+    function onSuccess(acceleration) {
+        var info = document.getElementById("info");
+        info.innerHTML = info.value + "<br>checked: " + acceleration.x + "," + acceleration.y;
+    }
+
+    function onError() {
+        alert('onError!');
+    }
+
+    function stop() {
+        if (watchid) {
+            navigator.accelerometer.clearWatch(watchid);
+            watchid = null;
+        }
+    }
+
+</script>
+    
+<style>
+    #player {
+        width:40px;
+        height:40px;
+        background-color:#555;
+        border-radius:40px;
+        position: absolute;
+        top:550px;
+        left:150px;
+    }
+
+    .enemy {
+        width:80px;
+        height:80px;
+        background-color:red;
+        position:absolute;
+    }
+
+    #enem1 {
+        top:0px;
+        left:0px;
+    }
+
+    #enem2 {
+        top:0px;
+        left:80px;
+    }
+
+    #enem3 {
+        top:0px;
+        left:200px;
+    }
+
+    #enem4 {
+        top:0px;
+        left:280px;
+    }
+
+</style>
+</head>
+<body>
+    <div id="info">
+        info goes here
+    </div>
+
+    <br />
+
+    <button id="stopAcc" onclick="stopAnim">stop this</button>
+
+    <!--<div id="hs">High Score: </div>
+    <br />
+    <div id="scr">Score: </div>
+    <div id="player"></div>
+    <div id="enem1" class="enemy">1</div>
+    <div id="enem2" class="enemy">2</div>
+    <div id="enem3" class="enemy">3</div>
+    <div id="enem4" class="enemy">4</div>-->
+</body>
+</html>
