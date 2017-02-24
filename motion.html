@@ -18,6 +18,11 @@
     function onDeviceReady() {
         watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 10 });
         start_game();
+        
+        document.addEventListener("backbutton", function (e) {
+            e.preventDefault();
+            window.open("index.html","_self");
+        }, false);
     }
 
     function onSuccess(acceleration) {
