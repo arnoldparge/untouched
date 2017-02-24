@@ -104,6 +104,10 @@
             collision();
         }, "1");
 
+        setInterval(function () {
+            check_goods();
+        }, "1");
+
         if (!localStorage.hs)
             localStorage.hs = 0;
 
