@@ -33,19 +33,19 @@
 
             check_borders(acceleration);
 
-            c.fillStyle = "white";
+            c.fillStyle = "white"; 
             c.fillRect(0, 0, can.width, can.height);
 
-            //var gradient = ctx.createRadialGradient(posX - 5, posY - 5, innerRadius, posX - 5, posY - 5, outerRadius);
-            //gradient.addColorStop(0, 'gray');
-            //gradient.addColorStop(1, 'black');
+            var gradient = ctx.createRadialGradient(posX - 5, posY - 5, innerRadius, posX - 5, posY - 5, outerRadius);
+            gradient.addColorStop(0, 'gray');
+            gradient.addColorStop(1, 'black');
 
-            c.fillStyle = "black";
+            //c.fillStyle = "black";
             c.beginPath();
             c.arc(posX, posY, 10, 0, Math.PI * 2, false);
 
-            //ctx.fillStyle = gradient;
-            ctx.fill();
+            c.fillStyle = gradient;
+            c.fill();
         }
 
         function check_borders(acceleration)
