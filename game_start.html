@@ -57,23 +57,30 @@
             e3y += 1.5;
             e4y += 0.5;
 
-            re_enemy(e1x, e1y);
-            re_enemy(e2x, e2y);
-            re_enemy(e3x, e3y);
-            re_enemy(e4x, e4y);
+            if (e1y > 640) {
+                e1y = -80;
+                e1x = Math.random() * 360 - 80;
+            }
+
+            if (e2y > 640) {
+                e2y = -80;
+                e2x = Math.random() * 360 - 80;
+            }
+
+            if (e3y > 640) {
+                e3y = -80;
+                e3x = Math.random() * 360 - 80;
+            }
+
+            if (e4y > 640) {
+                e4y = -80;
+                e4x = Math.random() * 360 - 80;
+            }
 
             create_enemy(c, e1x, e1y); //enemy 1
             create_enemy(c, e2x, e2y); //enemy 2
             create_enemy(c, e3x, e3y); //enemy 3
             create_enemy(c, e4x, e4y); //enemy 4
-        }
-
-        function re_enemy(ex, ey)
-        {
-            if (ey > 640) {
-                ey = -80;
-                ex = Math.random() * 360 - 80;
-            }
         }
 
         function create_enemy(ctx, x, y) {
