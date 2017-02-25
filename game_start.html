@@ -106,22 +106,13 @@
         }
 
         function gooding(ctx) {
-
-            if ((goodX > (posX - 20) && goodX < (posX + 40))) {
-                if ((goodY > (posY - 20) && goodY < (posY + 40))) {
+            if ((posX > (goodX - 20) && posX < (goodX + 40))) {
+                if ((posY > (goodY - 20) && posY < (goodY + 40))) {
                     navigator.notification.vibrate(100);
                     goodX = Math.random() * 340;
                     goodY = (Math.random() * 520) + 100;
                 }
             }
-
-            //if ((posX > (goodX - 60) && posX < (goodX + 40))) {
-            //    if ((posY > (goodY - 60) && posY < (goodY + 40))) {
-            //        navigator.notification.vibrate(100);
-            //        goodX = Math.random() * 340;
-            //        goodY = (Math.random() * 520) + 100;
-            //    }
-            //}
         }
 
         function collision(px, py, ex, ey) {
