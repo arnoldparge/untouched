@@ -17,7 +17,7 @@
 
         var posX, posY,
         innerRadius = 0,
-        outerRadius = 40;
+        outerRadius = 20;
 
         var e1x = 0, e1y = 0,
             e2x = 80, e2y = 0,
@@ -46,7 +46,7 @@
             c.fillRect(0, 0, can.width, can.height);
 
             c.fillStyle = "gray";
-            c.font = "30px Arial";
+            c.font = "20px Arial";
             c.fillText("Score: "+score, 0, 30);
 
             var gradient = c.createRadialGradient(posX - 5, posY - 5, innerRadius, posX - 5, posY - 5, outerRadius);
