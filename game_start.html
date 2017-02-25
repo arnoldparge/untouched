@@ -19,6 +19,11 @@
         innerRadius = 0,
         outerRadius = 40;
 
+        var e1x = 0, e1y = 0,
+            e2x = 80, e2y = 0,
+            e3x = 200, e3y = 0,
+            e4x = 280, e4y = 0;
+
         function onDeviceReady() {
             posX = 180;
             posY = 320;
@@ -33,7 +38,7 @@
 
             check_borders(acceleration);
 
-            c.fillStyle = "white"; 
+            c.fillStyle = "white";
             c.fillRect(0, 0, can.width, can.height);
 
             var gradient = c.createRadialGradient(posX - 5, posY - 5, innerRadius, posX - 5, posY - 5, outerRadius);
@@ -46,10 +51,27 @@
 
             c.fillStyle = gradient;
             c.fill();
+
+            e1y++;
+
+            create_enemy(c, e1x, e1y); //enemy 1
+            create_enemy(c, e2x, e2y); //enemy 2
+            create_enemy(c, e3x, e3y); //enemy 3
+            create_enemy(c, e4x, e4y); //enemy 4
+
+
         }
 
-        function check_borders(acceleration)
-        {
+        function create_enemy(ctx, x, y) {
+            var grd = ctx.createLinearGradient(x, y, x + 80, y);
+            grd.addColorStop(0, "pink");
+            grd.addColorStop(1, "red");
+
+            ctx.fillStyle = grd;
+            ctx.fillRect(x, y, 80, 80);
+        }
+
+        function check_borders(acceleration) {
             if ((posX - 20) < 0)
                 posX = 20;
             else if ((posY - 20) < 0)
