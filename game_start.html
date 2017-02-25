@@ -20,7 +20,7 @@
     function onDeviceReady() {
         posX = 0;
         posY = 200;
-        watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 500 });
+        watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 100 });
         console.log("inside");
     }
 
@@ -31,9 +31,9 @@
 
         setInterval(function () {
 
-            posX -= acceleration.x;
+            posX -= acceleration.x/2;
 
-            posY += acceleration.y;
+            posY += acceleration.y/2;
 
             c.fillStyle = "black"; //"rgba(0, 0, 0, 0.05)";
             c.fillRect(0, 0, can.width, can.height);
