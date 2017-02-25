@@ -45,6 +45,9 @@
             c.fillStyle = "white";
             c.fillRect(0, 0, can.width, can.height);
 
+            c.font = "30px Arial";
+            c.fillText("Score: "+score, 0, 30);
+
             var gradient = c.createRadialGradient(posX - 5, posY - 5, innerRadius, posX - 5, posY - 5, outerRadius);
             gradient.addColorStop(0, 'gray');
             gradient.addColorStop(1, 'black');
@@ -55,10 +58,10 @@
             c.fillStyle = gradient;
             c.fill();
 
-            //e1y += 2;
-            //e2y += 1;
-            //e3y += 1.5;
-            //e4y += 0.5;
+            e1y += 2;
+            e2y += 1;
+            e3y += 1.5;
+            e4y += 0.5;
 
             if (e1y > 640) {
                 e1y = -80;
@@ -116,10 +119,13 @@
         }
 
         function collision(px, py, ex, ey) {
+
+            score++;
+
             if ((px > (ex - 40) && px < (ex + 80))) {
                 if ((py > (ey - 40) && py < (ey + 80))) {
                     navigator.notification.vibrate(500);
-                    //localStorage.score = score;
+                    localStorage.score = score;
                     window.open("game_over.html", "_self"); //collision happens here
                 }
             }
@@ -159,6 +165,8 @@
                 watchid = null;
             }
         }
+
+        var score = 0;
 
     </script>
 
