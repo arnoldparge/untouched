@@ -15,33 +15,30 @@
     document.addEventListener("deviceready", onDeviceReady, false);
     var watchid;
 
-    var posX, posY;
+    var posX, posY, can, c, player;
 
     function onDeviceReady() {
         posX = 0;
         posY = 200;
-        watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 100 });
+        can = document.getElementById("cans");
+        c = can.getContext("2d");
+        player = new Circle(posX, posY, 10, 0, Math.PI * 2, false);
+        watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 500 });
         console.log("inside");
     }
 
     function onSuccess(acceleration) {
         console.log("inside");
-        var can = document.getElementById("cans"),
-            c = can.getContext("2d");
 
         setInterval(function () {
 
-            posX -= acceleration.x;
+            player.x -= acceleration.x;
 
-            posY += acceleration.y;
+            player.y += acceleration.y;
 
             c.fillStyle = "black"; //"rgba(0, 0, 0, 0.05)";
             c.fillRect(0, 0, can.width, can.height);
 
-            c.fillStyle = "white";
-            c.beginPath();
-            c.arc(posX, posY, 10, 0, Math.PI * 2, false);
-            c.fill();
 
         }, 5);
     }
@@ -55,6 +52,21 @@
             navigator.accelerometer.clearWatch(watchid);
             watchid = null;
         }
+    }
+
+    var Circle = function (x, y, r, s, e, b)
+    {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.s = s;
+        this.e = e;
+        this.b = b;
+
+        c.fillStyle = "white";
+        c.beginPath();
+        c.arc(this.x, this.y, this.r, this.s, this.e, this.b);
+        c.fill();
     }
 
 </script>
