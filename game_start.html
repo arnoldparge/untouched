@@ -20,7 +20,7 @@
         function onDeviceReady() {
             posX = 180;
             posY = 320;
-            watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 10 });
+            watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 1 });
             console.log("inside");
         }
 
@@ -38,10 +38,10 @@
                 else if ((posX + 10) > 360)
                     posX = 350;
                 else if ((posY + 10) > 640)
-                    posY = 650;
+                    posY = 630;
                 else {
-                    posX -= acceleration.x / 2;
-                    posY += acceleration.y / 2;
+                    posX -= acceleration.x;
+                    posY += acceleration.y;
                 }
 
                 c.fillStyle = "black"; //"rgba(0, 0, 0, 0.05)";
