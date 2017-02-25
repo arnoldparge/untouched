@@ -15,7 +15,9 @@
         document.addEventListener("deviceready", onDeviceReady, false);
         var watchid;
 
-        var posX, posY;
+        var posX, posY,
+        innerRadius = 0,
+        outerRadius = 20;
 
         function onDeviceReady() {
             posX = 180;
@@ -29,30 +31,36 @@
             var can = document.getElementById("cans"),
                 c = can.getContext("2d");
 
-            //setInterval(function () {
+            check_borders(acceleration);
 
-                if ((posX - 10) < 0)
-                    posX = 10;
-                else if ((posY - 10) < 0)
-                    posY = 10;
-                else if ((posX + 10) > 360)
-                    posX = 350;
-                else if ((posY + 10) > 640)
-                    posY = 630;
-                else {
-                    posX -= acceleration.x;
-                    posY += acceleration.y;
-                }
+            c.fillStyle = "black"; //"rgba(0, 0, 0, 0.05)";
+            c.fillRect(0, 0, can.width, can.height);
 
-                c.fillStyle = "black"; //"rgba(0, 0, 0, 0.05)";
-                c.fillRect(0, 0, can.width, can.height);
+            var gradient = ctx.createRadialGradient(posX - 5, posY - 5, innerRadius, posX - 5, posY - 5, outerRadius);
+            gradient.addColorStop(0, 'gray');
+            gradient.addColorStop(1, 'black');
 
-                c.fillStyle = "white";
-                c.beginPath();
-                c.arc(posX, posY, 10, 0, Math.PI * 2, false);
-                c.fill();
+            c.beginPath();
+            c.arc(posX, posY, 10, 0, Math.PI * 2, false);
 
-            //}, 5);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+        }
+
+        function check_borders(acceleration)
+        {
+            if ((posX - 10) < 0)
+                posX = 10;
+            else if ((posY - 10) < 0)
+                posY = 10;
+            else if ((posX + 10) > 360)
+                posX = 350;
+            else if ((posY + 10) > 640)
+                posY = 630;
+            else {
+                posX -= acceleration.x;
+                posY += acceleration.y;
+            }
         }
 
         function onError() {
