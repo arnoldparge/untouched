@@ -52,7 +52,19 @@
             c.fillStyle = gradient;
             c.fill();
 
-            e1y++;
+            e1y += 2;
+            e2y += 1;
+            e3y += 1.5;
+            e4y += 0.5;
+
+            if (e1y > 640)
+                e1y = -80;
+            if (e2y > 640)
+                e2y = -80;
+            if (e3y > 640)
+                e3y = -80;
+            if (e4y > 640)
+                e4y = -80;
 
             create_enemy(c, e1x, e1y); //enemy 1
             create_enemy(c, e2x, e2y); //enemy 2
