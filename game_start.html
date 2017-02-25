@@ -98,20 +98,21 @@
         {
             goodX = Math.random() * 340;
             goodY = (Math.random() * 520) + 100;
-            var grd = ctx.createLinearGradient(x, y, x + 20, y);
-            grd.addColorStop(0, "pink");
-            grd.addColorStop(1, "red");
+
+            var grd = ctx.createLinearGradient(goodX, goodY, goodX + 20, goodY);
+            grd.addColorStop(0, "lightgreen");
+            grd.addColorStop(1, "green");
 
             ctx.fillStyle = grd;
-            ctx.fillRect(x, y, 20, 20);
+            ctx.fillRect(goodX, goodY, 20, 20);
         }
 
         function gooding() {
             if ((posX > (goodX - 40) && posX < (goodX + 20))) {
                 if ((posY > (goodY - 40) && posY < (goodY + 20))) {
                     navigator.notification.vibrate(100);
-                    posX = (Math.random() * 340);
-                    posY = ((Math.random() * 520) + 100);
+                    goodX = (Math.random() * 340);
+                    goodY = ((Math.random() * 520) + 100);
                 }
             }
         }
