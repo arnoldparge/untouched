@@ -17,7 +17,7 @@
 
         var posX, posY,
         innerRadius = 0,
-        outerRadius = 20;
+        outerRadius = 40;
 
         function onDeviceReady() {
             posX = 180;
@@ -42,7 +42,7 @@
 
             //c.fillStyle = "black";
             c.beginPath();
-            c.arc(posX, posY, 10, 0, Math.PI * 2, false);
+            c.arc(posX, posY, 20, 0, Math.PI * 2, false);
 
             c.fillStyle = gradient;
             c.fill();
@@ -50,13 +50,13 @@
 
         function check_borders(acceleration)
         {
-            if ((posX - 10) < 0)
-                posX = 10;
-            else if ((posY - 10) < 0)
-                posY = 10;
-            else if ((posX + 10) > 360)
+            if ((posX - 20) < 0)
+                posX = 20;
+            else if ((posY - 20) < 0)
+                posY = 20;
+            else if ((posX + 20) > 360)
                 posX = 350;
-            else if ((posY + 10) > 640)
+            else if ((posY + 20) > 640)
                 posY = 630;
             else {
                 posX -= acceleration.x;
