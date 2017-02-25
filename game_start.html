@@ -1,76 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Game</title>
+    <title>Game</title>
 
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    
-<script src="js/jquery-3.1.0.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<link href="css/bootstrap.css" rel="stylesheet" />
-<!--<script type="text/javascript" src="js/Insomnia.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 
-<script type="text/javascript" charset="utf-8">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <!--<script type="text/javascript" src="js/Insomnia.js"></script>-->
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-    var watchid;
+    <script type="text/javascript" charset="utf-8">
 
-    var posX, posY;
+        document.addEventListener("deviceready", onDeviceReady, false);
+        var watchid;
 
-    function onDeviceReady() {
-        posX = 0;
-        posY = 200;
-        watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 100 });
-        console.log("inside");
-    }
+        var posX, posY;
 
-    function onSuccess(acceleration) {
-        console.log("inside");
-        var can = document.getElementById("cans"),
-            c = can.getContext("2d");
-
-        setInterval(function () {
-
-            if (posX - (acceleration.x / 2) < 0)
-                posX = 0;
-            else if (posY + (acceleration.y / 2) < 0)
-                posY = 0;
-            else
-            {
-                posX -= acceleration.x / 2;
-                posY += acceleration.y / 2;
-            }
-
-            c.fillStyle = "black"; //"rgba(0, 0, 0, 0.05)";
-            c.fillRect(0, 0, can.width, can.height);
-
-            c.fillStyle = "white";
-            c.beginPath();
-            c.arc(posX, posY, 10, 0, Math.PI * 2, false);
-            c.fill();
-
-        }, 5);
-    }
-
-    function onError() {
-        alert('onError!');
-    }
-
-    function stop() {
-        if (watchid) {
-            navigator.accelerometer.clearWatch(watchid);
-            watchid = null;
+        function onDeviceReady() {
+            posX = 0;
+            posY = 200;
+            watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 100 });
+            console.log("inside");
         }
-    }
 
-</script>
+        function onSuccess(acceleration) {
+            console.log("inside");
+            var can = document.getElementById("cans"),
+                c = can.getContext("2d");
+
+            setInterval(function () {
+
+                if ((posX - 10) < 0)
+                    posX = 0;
+                else if ((posY - 10) < 0)
+                    posY = 0;
+                else if ((posX + 10) > 360)
+                    posY = 350;
+                else if ((posY + 10) > 640)
+                    posY = 650;
+                else {
+                    posX -= acceleration.x / 2;
+                    posY += acceleration.y / 2;
+                }
+
+                c.fillStyle = "black"; //"rgba(0, 0, 0, 0.05)";
+                c.fillRect(0, 0, can.width, can.height);
+
+                c.fillStyle = "white";
+                c.beginPath();
+                c.arc(posX, posY, 10, 0, Math.PI * 2, false);
+                c.fill();
+
+            }, 5);
+        }
+
+        function onError() {
+            alert('onError!');
+        }
+
+        function stop() {
+            if (watchid) {
+                navigator.accelerometer.clearWatch(watchid);
+                watchid = null;
+            }
+        }
+
+    </script>
 
 </head>
 <body>
 
-<canvas id="cans" width="360" height="640">
-    Your device does not support this game!
-</canvas>
+    <canvas id="cans" width="360" height="640">Your device does not support this game!
+    </canvas>
 
 </body>
 </html>
