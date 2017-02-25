@@ -77,10 +77,10 @@
                 e4x = Math.random() * 280;
             }
 
-            collision(posX, posY, e1x, e1y);
-            collision(posX, posY, e2x, e2y);
-            collision(posX, posY, e3x, e3y);
-            collision(posX, posY, e4x, e4y);
+            collision(posX - 20, posY - 20, e1x, e1y);
+            collision(posX - 20, posY - 20, e2x, e2y);
+            collision(posX - 20, posY - 20, e3x, e3y);
+            collision(posX - 20, posY - 20, e4x, e4y);
 
             create_enemy(c, e1x, e1y); //enemy 1
             create_enemy(c, e2x, e2y); //enemy 2
