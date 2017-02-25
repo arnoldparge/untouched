@@ -29,7 +29,7 @@
             var can = document.getElementById("cans"),
                 c = can.getContext("2d");
 
-            setInterval(function () {
+            //setInterval(function () {
 
                 if ((posX - 10) < 0)
                     posX = 10;
@@ -52,7 +52,7 @@
                 c.arc(posX, posY, 10, 0, Math.PI * 2, false);
                 c.fill();
 
-            }, 5);
+            //}, 5);
         }
 
         function onError() {
