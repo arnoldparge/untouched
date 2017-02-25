@@ -24,7 +24,7 @@
             e3x = 200, e3y = 0,
             e4x = 280, e4y = 0;
 
-        var goodX, goodY;
+        var goodX = 100, goodY = 100;
 
         var can, c;
 
@@ -35,14 +35,11 @@
             can = document.getElementById("cans"),
             c = can.getContext("2d");
 
-            create_good(c);
             watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 1 });
             console.log("inside");
         }
 
         function onSuccess(acceleration) {
-            console.log("inside");
-
             check_borders(acceleration);
 
             c.fillStyle = "white";
@@ -52,7 +49,6 @@
             gradient.addColorStop(0, 'gray');
             gradient.addColorStop(1, 'black');
 
-            //c.fillStyle = "black";
             c.beginPath();
             c.arc(posX, posY, 20, 0, Math.PI * 2, false);
 
@@ -94,14 +90,13 @@
             create_enemy(c, e3x, e3y); //enemy 3
             create_enemy(c, e4x, e4y); //enemy 4
 
+            create_good(c);
+
             gooding(c);
         }
 
         function create_good(ctx)
         {
-            goodX = Math.random() * 340;
-            goodY = (Math.random() * 520) + 100;
-
             var grd = ctx.createLinearGradient(goodX, goodY, goodX + 20, goodY);
             grd.addColorStop(0, "lightgreen");
             grd.addColorStop(1, "green");
@@ -114,7 +109,8 @@
             if ((posX > (goodX - 40) && posX < (goodX + 20))) {
                 if ((posY > (goodY - 40) && posY < (goodY + 20))) {
                     navigator.notification.vibrate(100);
-                    create_good(ctx);
+                    goodX = Math.random() * 340;
+                    goodY = (Math.random() * 520) + 100;
                 }
             }
         }
