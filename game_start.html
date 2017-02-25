@@ -36,7 +36,7 @@
             c.fillStyle = "white"; 
             c.fillRect(0, 0, can.width, can.height);
 
-            var gradient = ctx.createRadialGradient(posX - 5, posY - 5, innerRadius, posX - 5, posY - 5, outerRadius);
+            var gradient = c.createRadialGradient(posX - 5, posY - 5, innerRadius, posX - 5, posY - 5, outerRadius);
             gradient.addColorStop(0, 'gray');
             gradient.addColorStop(1, 'black');
 
