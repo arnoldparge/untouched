@@ -20,7 +20,7 @@
         function onDeviceReady() {
             posX = 180;
             posY = 320;
-            watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 100 });
+            watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 10 });
             console.log("inside");
         }
 
