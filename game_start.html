@@ -106,8 +106,8 @@
         }
 
         function gooding(ctx) {
-            if ((posX > (goodX - 40) && posX < (goodX + 20))) {
-                if ((posY > (goodY - 40) && posY < (goodY + 20))) {
+            if ((posX > (goodX - 60) && posX < (goodX + 40))) {
+                if ((posY > (goodY - 60) && posY < (goodY + 40))) {
                     navigator.notification.vibrate(100);
                     goodX = Math.random() * 340;
                     goodY = (Math.random() * 520) + 100;
