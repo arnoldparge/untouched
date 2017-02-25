@@ -24,6 +24,8 @@
             e3x = 200, e3y = 0,
             e4x = 280, e4y = 0;
 
+        var goodX, goodY;
+
         function onDeviceReady() {
             posX = 180;
             posY = 320;
@@ -86,6 +88,32 @@
             create_enemy(c, e2x, e2y); //enemy 2
             create_enemy(c, e3x, e3y); //enemy 3
             create_enemy(c, e4x, e4y); //enemy 4
+
+            gooding();
+
+            create_good(c);
+        }
+
+        function create_good(ctx)
+        {
+            goodX = Math.random() * 340;
+            goodY = (Math.random() * 520) + 100;
+            var grd = ctx.createLinearGradient(x, y, x + 20, y);
+            grd.addColorStop(0, "pink");
+            grd.addColorStop(1, "red");
+
+            ctx.fillStyle = grd;
+            ctx.fillRect(x, y, 20, 20);
+        }
+
+        function gooding() {
+            if ((posX > (goodX - 40) && posX < (goodX + 20))) {
+                if ((posY > (goodY - 40) && posY < (goodY + 20))) {
+                    navigator.notification.vibrate(100);
+                    posX = (Math.random() * 340);
+                    posY = ((Math.random() * 520) + 100);
+                }
+            }
         }
 
         function collision(px, py, ex, ey) {
