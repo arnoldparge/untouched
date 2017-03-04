@@ -22,6 +22,11 @@
                 navigator.app.exitApp();
             }, false);
         }
+        
+        function openshop()
+        {
+            window.open("http://192.168.0.102/shopadv/home.aspx","_self");
+        }
 
     </script>
 
@@ -43,7 +48,7 @@
         
         <a class="btn btn-success" href="motion.html">Start Game</a>
         <a class="btn btn-success" href="game_start.html">Trial</a>
-        <a class="btn btn-success" href="http://192.168.0.102/shopadv/home.aspx">shop</a>
+        <a class="btn btn-success" onclick="openshop()">shop</a>
 
     </div>
     <script type="text/javascript" src="cordova.js"></script>
