@@ -20,7 +20,8 @@
 
             var sc = document.getElementById("score");
 
-
+            if (localStorage.hs == null)
+                localStorage.hs = 0;
 
             if (parseInt(localStorage.hs) < parseInt(localStorage.score))
                 localStorage.hs = localStorage.score;
