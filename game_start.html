@@ -14,7 +14,7 @@
 
         document.addEventListener("deviceready", onDeviceReady, false);
         var watchid;
-
+        
         var posX, posY,
         innerRadius = 0,
         outerRadius = 20;
@@ -112,7 +112,8 @@
         function gooding(ctx) {
             if ((posX > (goodX - 20) && posX < (goodX + 40))) {
                 if ((posY > (goodY - 20) && posY < (goodY + 40))) {
-                    navigator.notification.vibrate(100);
+                    //navigator.notification.vibrate(100);
+                    score += 100;
                     goodX = Math.random() * 340;
                     goodY = (Math.random() * 520) + 100;
                 }
@@ -120,9 +121,6 @@
         }
 
         function collision(px, py, ex, ey) {
-
-            score++;
-
             if ((px > (ex - 40) && px < (ex + 80))) {
                 if ((py > (ey - 40) && py < (ey + 80))) {
                     navigator.notification.vibrate(500);
