@@ -30,13 +30,16 @@
 
         function onDeviceReady() {
 
-            var mySong = new Media('music/Vorsa - Losing Sleep.mp3');
-
-            mySong.setVolume('1.0');
-
-            mySong.play();
-
-            mySong.setVolume('1.0');
+            try
+            {
+                var mySong = new Media('/music/Vorsa - Losing Sleep.mp3');
+                mySong.id = 'playerMyAdio';
+                mySong.play();
+            }
+            catch (e)
+            {
+                alert("Error in audio file: " + e.message());
+            }
 
             posX = 180;
             posY = 320;
