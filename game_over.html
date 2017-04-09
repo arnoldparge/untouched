@@ -1,184 +1,71 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Game</title>
-
+    <meta charset="utf-8" />
+    <title>Game Over</title>
+    
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet" />
-    <!--<script type="text/javascript" src="js/Insomnia.js"></script>-->
 
-    <script type="text/javascript" charset="utf-8">
-
+    <script>
         document.addEventListener("deviceready", onDeviceReady, false);
-        var watchid;
-        
-        var posX, posY,
-        innerRadius = 0,
-        outerRadius = 20;
-
-        var e1x = 0, e1y = 0,
-            e2x = 80, e2y = 0,
-            e3x = 200, e3y = 0,
-            e4x = 280, e4y = 0;
-
-        var goodX = 100, goodY = 400;
-
-        var can, c;
-
         function onDeviceReady() {
+            document.addEventListener("backbutton", function (e) {
+                e.preventDefault();
+                window.open("index.html", "_self");
+            }, false);
 
-            var mySong = new Media("/songs/1.mp3");
+            var sc = document.getElementById("score");
 
-            mySong.play();
+            if (localStorage.hs == null)
+                localStorage.hs = 0;
 
-            posX = 180;
-            posY = 320;
-
-            can = document.getElementById("cans"),
-            c = can.getContext("2d");
-
-            watchid = navigator.accelerometer.watchAcceleration(onSuccess, onError, { frequency: 1 });
-            console.log("inside");
+            if (parseInt(localStorage.hs) < parseInt(localStorage.score))
+                localStorage.hs = localStorage.score;
+            
+            sc.innerHTML = "Total Score: " + localStorage.score;
+            document.getElementById("highscore").innerHTML = 'High Score: ' + localStorage.hs;
         }
-
-        function onSuccess(acceleration) {
-            check_borders(acceleration);
-
-            c.fillStyle = "white";
-            c.fillRect(0, 0, can.width, can.height);
-
-            c.fillStyle = "gray";
-            c.font = "20px Arial";
-            c.fillText("Score: "+score, 0, 30);
-
-            var gradient = c.createRadialGradient(posX - 5, posY - 5, innerRadius, posX - 5, posY - 5, outerRadius);
-            gradient.addColorStop(0, 'gray');
-            gradient.addColorStop(1, 'black');
-
-            c.beginPath();
-            c.arc(posX, posY, 20, 0, Math.PI * 2, false);
-
-            c.fillStyle = gradient;
-            c.fill();
-
-            e1y += 2;
-            e2y += 1;
-            e3y += 1.5;
-            e4y += 0.5;
-
-            if (e1y > 640) {
-                e1y = -80;
-                e1x = Math.random() * 280;
-            }
-
-            if (e2y > 640) {
-                e2y = -80;
-                e2x = Math.random() * 280;
-            }
-
-            if (e3y > 640) {
-                e3y = -80;
-                e3x = Math.random() * 280;
-            }
-
-            if (e4y > 640) {
-                e4y = -80;
-                e4x = Math.random() * 280;
-            }
-
-            collision(posX - 20, posY - 20, e1x, e1y);
-            collision(posX - 20, posY - 20, e2x, e2y);
-            collision(posX - 20, posY - 20, e3x, e3y);
-            collision(posX - 20, posY - 20, e4x, e4y);
-
-            create_enemy(c, e1x, e1y); //enemy 1
-            create_enemy(c, e2x, e2y); //enemy 2
-            create_enemy(c, e3x, e3y); //enemy 3
-            create_enemy(c, e4x, e4y); //enemy 4
-
-            create_good(c);
-
-            gooding(c);
-        }
-
-        function create_good(ctx)
-        {
-            var grd = ctx.createLinearGradient(goodX, goodY, goodX + 20, goodY);
-            grd.addColorStop(0, "lightgreen");
-            grd.addColorStop(1, "green");
-
-            ctx.fillStyle = grd;
-            ctx.fillRect(goodX, goodY, 20, 20);
-        }
-
-        function gooding(ctx) {
-            if ((posX > (goodX - 20) && posX < (goodX + 40))) {
-                if ((posY > (goodY - 20) && posY < (goodY + 40))) {
-                    //navigator.notification.vibrate(100);
-                    score += 100;
-                    goodX = Math.random() * 340;
-                    goodY = (Math.random() * 520) + 100;
-                }
-            }
-        }
-
-        function collision(px, py, ex, ey) {
-            if ((px > (ex - 40) && px < (ex + 80))) {
-                if ((py > (ey - 40) && py < (ey + 80))) {
-                    navigator.notification.vibrate(500);
-                    localStorage.score = score;
-                    window.open("game_over.html", "_self"); //collision happens here
-                }
-            }
-        }
-
-        function create_enemy(ctx, x, y) {
-            var grd = ctx.createLinearGradient(x, y, x + 80, y);
-            grd.addColorStop(0, "pink");
-            grd.addColorStop(1, "red");
-
-            ctx.fillStyle = grd;
-            ctx.fillRect(x, y, 80, 80);
-        }
-
-        function check_borders(acceleration) {
-            if ((posX - 20) < 0)
-                posX = 20;
-            else if ((posY - 20) < 0)
-                posY = 20;
-            else if ((posX + 20) > 360)
-                posX = 340;
-            else if ((posY + 20) > 640)
-                posY = 620;
-            else {
-                posX -= acceleration.x;
-                posY += acceleration.y;
-            }
-        }
-
-        function onError() {
-            alert('onError!');
-        }
-
-        function stop() {
-            if (watchid) {
-                navigator.accelerometer.clearWatch(watchid);
-                watchid = null;
-            }
-        }
-
-        var score = 0;
 
     </script>
 
+    <style>
+        #ttl {
+            font-size:40px;
+        }
+
+        body {
+            text-align:center;
+        }
+
+        .btn {
+            color:black;
+        }
+
+        #score {
+            font-size:30px;
+        }
+
+    </style>
+
 </head>
 <body>
-
-    <canvas id="cans" width="360" height="640">Your device does not support this game!
-    </canvas>
-
+    <br /><br />
+    <div id="ttl">
+        <u>Ga</u><i>meOv</i><u>er</u>
+    </div>
+    <br /><br />
+    <br /><br />
+    <div id="score"></div>
+    <br />
+    <div id="highscore"></div>
+    <br /><br />
+    <br /><br />
+    <a href="game_start.html" class="btn btn-success">Try Again</a>
+    <br /><br />
+    <a href="index.html" class="btn btn-success">Main Menu</a>
 </body>
 </html>
