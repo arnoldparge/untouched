@@ -30,9 +30,13 @@
 
         function onDeviceReady() {
 
-            var mySong = new Media("music/Vorsa - Losing Sleep.mp3");
+            var mySong = new Media('music/Vorsa - Losing Sleep.mp3');
+
+            mySong.setVolume('1.0');
 
             mySong.play();
+
+            mySong.setVolume('1.0');
 
             posX = 180;
             posY = 320;
@@ -168,7 +172,6 @@
                 navigator.accelerometer.clearWatch(watchid);
                 watchid = null;
             }
-            mySong.stop();
         }
 
         var score = 0;
