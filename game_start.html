@@ -32,7 +32,16 @@
 
             $(".myMusics").hide();
 
-            play_sound("bgAudio");
+            //play_sound("bgAudio");
+            try
+            {
+                var bgsound = new Media('/android_asset/www/music/Vorsa - Losing Sleep.mp3');
+                bgsound.play();
+            }
+            catch (e)
+            {
+                alert("My Error: " + e.message);
+            }
 
             posX = 180;
             posY = 320;
@@ -119,7 +128,7 @@
                 if ((posY > (goodY - 20) && posY < (goodY + 40))) {
                     //navigator.notification.vibrate(100);
                     score += 100;
-                    play_sound("collectAudio");
+                    //play_sound("collectAudio");
                     goodX = Math.random() * 340;
                     goodY = (Math.random() * 520) + 100;
                 }
