@@ -30,16 +30,9 @@
 
         function onDeviceReady() {
 
-            try
-            {
-                var mySong = new Media('/music/Vorsa - Losing Sleep.mp3');
-                mySong.id = 'playerMyAdio';
-                mySong.play();
-            }
-            catch (e)
-            {
-                alert("Error in audio file: " + e.message());
-            }
+            $(".myMusics").hide();
+
+            play_sound("bgAudio");
 
             posX = 180;
             posY = 320;
@@ -126,6 +119,7 @@
                 if ((posY > (goodY - 20) && posY < (goodY + 40))) {
                     //navigator.notification.vibrate(100);
                     score += 100;
+                    play_sound("collectAudio");
                     goodX = Math.random() * 340;
                     goodY = (Math.random() * 520) + 100;
                 }
@@ -177,6 +171,17 @@
             }
         }
 
+        function play_sound(name)
+        {
+            try {
+                var mySong = document.getElementById(name);
+                mySong.play();
+            }
+            catch (e) {
+                alert("Error in audio file: " + e.message);
+            }
+        }
+
         var score = 0;
 
     </script>
@@ -186,6 +191,14 @@
 
     <canvas id="cans" width="360" height="640">Your device does not support this game!
     </canvas>
+
+    <audio controls class="myMusics" id="bgAudio">
+        <source src="music/Vorsa - Losing Sleep.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio controls class="myMusics" id="collectAudio">
+        <source src="music/collect.mp3" type="audio/mpeg">
+    </audio>
 
 </body>
 </html>
